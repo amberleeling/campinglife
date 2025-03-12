@@ -12,10 +12,10 @@
       <ul class="navbar-nav me-auto">
         <%# if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path , class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Booking", "#", class: "nav-link" %>
+            <%= link_to "Booking", "/client/bookings", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag asset_path('camping05.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -36,6 +36,6 @@
   <div class="container">
     <h1>Camping Made Easy, Adventures Made Unforgettable</h1>
     <p>Gear Up, Get Out, Explore More</p>
-    <a class="btn btn-flat" href="#">book now</a>
+    <a href = "/equipments" class="btn btn-flat" href="#">book now</a>
   </div>
 </div>

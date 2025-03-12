@@ -14,13 +14,13 @@
       <ul class="navbar-nav me-auto">
         <%# if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path , class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Booking", "#", class: "nav-link" %>
+            <%= link_to "Booking", "/bookings", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= image_tag asset_path('camping05.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
@@ -40,17 +40,17 @@
 
 
 <div class="cards">
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('camping01.jpg') %>')">
-    Tent - Snowpeak
-  </div>
-
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('camping02.jpg') %>')">
-    Tent - Coleman
-  </div>
-
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('camping03.jpg') %>')">
-    Tent - Naturehike
-  </div>
+  <% @equipments.each_with_index do |equipment, index| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path(@equipment_images[index % @equipment_images.length]) %>')">
+      <div class="card-content">
+        <strong class="equipment-name"><%= link_to equipment.name, equipment_path(equipment), class: "equipment-link" %></strong>
+        <p class="equipment-price">Price: <%= equipment.price %> per day</p>
+      </div>
+    </div>
+  <% end %>
 </div>
+
+
+
 
 </div>

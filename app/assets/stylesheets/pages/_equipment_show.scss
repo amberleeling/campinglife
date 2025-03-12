@@ -1,0 +1,118 @@
+$white: #fff;
+$black: #333;
+$lightergray: #d5d5d5;
+$lightgray: #f0f3f1;
+$gray: #e3dddd;
+$text: #888;
+$button: #3e3e3f;
+$button-hover: #565657;
+
+.grid.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px; /* Adds spacing between image and text */
+}
+
+.product-gallery {
+  flex: 1; /* Makes image take up half the space */
+  max-width: 50%; /* Ensures images don't get too wide */
+}
+
+.product-info {
+  flex: 1; /* Makes text take up the other half */
+  text-align: left;
+  max-width: 50%;
+}
+
+.product-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.product-info h2 {
+  font-size: 2rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 1.125rem;
+  border-top: 1px solid $gray;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.add-to-cart {
+  display: inline-block;
+  background: $button;
+  color: $white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+
+
+/* Ensuring images maintain proper size */
+.product-image img {
+  height: 65vh; /* Adjust height dynamically */
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.image-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.image-list li::marker {
+  content: "";
+  display: none;
+}
+
+.image-list img {
+  height: 8rem;
+  width: auto;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.image-list img:hover {
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid.product {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-gallery, .product-info {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+
+.navbar-lewagon {
+  justify-content: space-between;
+  background: white;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
