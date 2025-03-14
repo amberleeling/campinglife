@@ -1,47 +1,22 @@
 <div class= "container">
-
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag asset_path('logo.jpg') %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <%# if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path , class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Booking", "/bookings", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag asset_path('camping05.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
-              <%# link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            </div>
-          </li>
-      </ul>
-    </div>
-  </div>
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('camping00.jpg') %>')">
+    <h1>🏕️⛺️ CampingLife 🍿🏖️<h1>
 </div>
 
-
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('camping00.jpg') %>')">
-    🏕️⛺️ CampingLife 🍿🏖️
+<div class='pt-5 pb-2'>
+  <%= form_with url: equipments_path, method: :get do |f| %>
+    <div class='d-flex'>
+      <%= f.label :address, class: 'sr-only' %>
+      <%= f.text_field :address, value: params[:address], class: 'form-control' %>
+      <%= f.submit 'Search', class: 'btn btn-primary text-white' %>
+    </div>
+  <% end %>
 </div>
 
 
 <div class="cards">
   <% @equipments.each_with_index do |equipment, index| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path(@equipment_images[index % @equipment_images.length]) %>')">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(equipment.images.first.key) %>')">
       <div class="card-content">
         <strong class="equipment-name"><%= link_to equipment.name, equipment_path(equipment), class: "equipment-link" %></strong>
         <p class="equipment-price">Price: <%= equipment.price %> per day</p>
@@ -51,6 +26,40 @@
 </div>
 
 
-
-
+<div style="width: 100%; height: 600px; margin-top: 50px; margin-bottom: 50px"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
+</div>
+
+
+<footer class="text-center text-white" style="background-color: #F2541B;">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Iframe -->
+    <section class="">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+          <div class="ratio ratio-16x9">
+            <iframe
+              class="shadow-1-strong rounded"
+              src="https://www.youtube.com/embed/ETORWgahumI"
+              title="YouTube video"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: Iframe -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #000000;">
+    © 2025 Copyright:
+    <a class="text-white" href="https://campinglife.com/">Campinglife.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>

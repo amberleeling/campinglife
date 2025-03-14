@@ -1,12 +1,12 @@
-<h1 class="text-center my-4">My Bookings</h1>
+<h1 class="text-center my-4">Bookings I received</h1>
 
 <div class="container">
-  <ul class="nav nav-tabs">
+   <ul class="nav nav-tabs ">
     <li class="nav-item">
-      <%= link_to 'My bookings (as client)', client_bookings_path, class: 'nav-link active' %>
+      <%= link_to 'My bookings (as client)', client_bookings_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
-      <%= link_to 'My bookings (as owner)', owner_bookings_path, class: 'nav-link' %>
+      <%= link_to 'My bookings (as owner)', owner_bookings_path, class: 'nav-link active' %>
     </li>
   </ul>
 
@@ -23,8 +23,10 @@
               <p class="card-text">
                 <strong>Status:</strong> <%= booking.status.capitalize %>
               </p>
+
               <% if booking.pending? %>
-                <%= link_to "Cancel Booking", booking_path(booking), class: "card-link text-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?" } %>
+                <%= link_to "Accept", accept_booking_path(booking), class: "card-link text-danger", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to accept this booking?" } %>
+                <%= link_to "Decline", decline_booking_path(booking), class: "card-link text-danger", data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to decline this booking?" } %>
               <% end %>
             </div>
           </div>

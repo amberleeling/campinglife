@@ -1,52 +1,20 @@
-<div class= "container">
-
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag asset_path('logo.jpg') %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <%# if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path , class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Booking", "/bookings", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag asset_path('camping05.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
-              <%# link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            </div>
-          </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
 <div class="container">
   <div class="grid product">
 
     <div class="column-xs-12 column-md-7">
       <div class="product-gallery">
         <div class="product-image">
-          <img class="active" src="<%= asset_path('camping06.jpg') %>">
+          <% if @equipment.images.first %>
+            <%= cl_image_tag @equipment.images.first.key, class: "active" %>
+          <% end %>
         </div>
-        <ul class="image-list">
-          <li class="image-item"><img src="<%= asset_path('camping07.jpg') %>"></li>
-          <li class="image-item"><img src="<%= asset_path('camping08.jpg') %>"></li>
-          <li class="image-item"><img src="<%= asset_path('camping09.jpg') %>"></li>
-        </ul>
+        <% if @equipment.images.count > 1 %>
+          <ul class="image-list">
+            <% @equipment.images[1..-1].each do |image| %>
+              <li><%= cl_image_tag image.key, class: 'class-item' %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </div>
 
@@ -66,26 +34,12 @@
   </button>
 
   <div data-toggle-target="togglableElement" class="d-none mt-3">
-    <%= form_with url: "/client/bookings", method: :post, local: true, class: "booking-form" do |f| %>
-      <div class="form-group">
-        <%= f.label :first_name, "First Name" %>
-        <%= f.text_field :first_name, required: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :last_name, "Last Name" %>
-        <%= f.text_field :last_name, required: true, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :phone, "Phone Number" %>
-        <%= f.telephone_field :phone, required: true, class: "form-control" %>
-      </div>
-
+    <%= simple_form_for [@equipment, @booking], html: {class: "booking-form", data: { controller: 'flatpickr' }} do |f| %>
+      <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: 'startDateInput' }} %>
+      <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: 'endDateInput' }} %>
       <%= f.submit "Confirm Booking", class: "add-to-cart" %>
     <% end %>
   </div>
 </div>
-
-
+</div>
 </div>

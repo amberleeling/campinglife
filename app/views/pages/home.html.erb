@@ -1,41 +1,47 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag asset_path('logo.jpg') %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <%# if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path , class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Booking", "/client/bookings", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag asset_path('camping05.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
-              <%# link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            </div>
-          </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= asset_path('camping04.jpg') %>');">
+<div class="banner text-center d-flex align-items-center justify-content-center"
+     style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= asset_path('camping04.jpg') %>'); height: 400px;">
   <div class="container">
-    <h1>Camping Made Easy, Adventures Made Unforgettable</h1>
-    <p>Gear Up, Get Out, Explore More</p>
-    <a href = "/equipments" class="btn btn-flat" href="#">book now</a>
+    <h1 class="text-white fw-bold">Camping Made Easy, Adventures Made Unforgettable</h1>
+    <p class="text-white" style="margin-bottom: 30px;">Gear Up, Get Out, Explore More</p>
+    <a href="/equipments" class="btn btn-flat btn-primary">Book Now</a>
   </div>
 </div>
+
+<div class="container text-center" style="margin-top: 50px; margin-bottom: 50px;">
+  <h1 class="mb-4">About Me</h1>
+  <p class="lead" style="margin-bottom: 50px">
+    CampingLife is a premium camping gear rental service designed for adventurers who seek the beauty of nature without the hassle of owning and maintaining expensive equipment. Our mission is to make outdoor experiences more accessible, sustainable, and enjoyable for everyone, whether you're a seasoned camper or a first-time explorer.
+  </p>
+
+  <div class="d-flex justify-content-center">
+    <%= image_tag asset_path('camping01.jpg'), class: "img-fluid rounded shadow", width: "700", height: "500", alt: "Camping Adventure" %>
+  </div>
+
+  <h1 class="mt-5 mb-4">Our Services</h1>
+  <p class="lead">
+    At CampingLife, we offer a wide range of high-quality camping gear, including tents, sleeping bags, cooking equipment, and outdoor essentials. Our rental packages are tailored to different adventure levels, from solo backpacking trips to family-friendly camping getaways. We ensure that all equipment is well-maintained, sanitized, and ready for use, so you can focus on what truly matters—creating unforgettable memories in the great outdoors.
+  </p>
+</div>
+
+<footer class="text-center text-white" style="background-color: #F2541B;">
+  <div class="container p-4">
+    <section>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+          <div class="ratio ratio-16x9">
+            <iframe class="shadow-1-strong rounded"
+                    src="https://www.youtube.com/embed/ETORWgahumI"
+                    title="YouTube video"
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="text-center p-3" style="background-color: #000000;">
+    © 2025 Copyright:
+    <a class="text-white" href="https://campinglife.com/">Campinglife.com</a>
+  </div>
+</footer>
